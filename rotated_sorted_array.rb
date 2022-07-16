@@ -1,53 +1,38 @@
-require 'byebug'
 class BinarySearch
-    def initialize(target)
-      @list = [5, 6, 7, 8, 1, 2, 3, 4]
-      @target = target
-      pivot = find_inflection_point()
-      puts "target number is at index #{find_target_number(pivot)}"
-    end 
-  
-    def find_inflection_point
-      low = 0 
-      high = @list.length - 1 # 7 because we start from 0
-      
-      while low <= high # while we have more than one number to compare
-        pivot = 0
-        middle = (low + high)/2
-        guess = @list[middle]
+  def initialize(target)
+    @list = [5, 6, 7, 8, 1, 2, 3, 4]
+    @target = target
 
-        if guess < @list[middle + 1] then low = middle + 1 end # if guess smaller than the next element, we are still in the left side of the rotated array
-
-        return pivot = middle + 1 if guess > @list[middle + 1] # when guess is bigger than the next element, we have found the pivot
-      end
-
-      return -1
-    end
-
-    def find_target_number(pivot)
-      low = 0
-      high = @list.length - 1
-
-      if @target < @list[low] # target is at the second section of the array
-        low = pivot
-      elsif @target > @list[low] # target is at the first section of the array
-        high = pivot - 1 
-      end 
-
-      #byebug
-
-      while low <= high 
-        middle = (low + high)/2
-        guess = @list[middle]
-            
-        if guess > @target then high = middle - 1 end
-        if guess < @target then low = middle + 1 end
-    
-        return middle if guess == @target
-      end 
-
-      return -1
-    end
+    puts "target number is at index #{find_target_number()}"
   end 
-  
-  subject = BinarySearch.new(3)
+
+  def find_target_number()
+    low = 0
+    high = @list.length-1
+
+    while low <= high # while more than a number to compare
+      middle = (low + high) / 2
+      pivot = @list[middle] # ending or starting point depending on the array section we are in
+
+      return middle if pivot == @target
+
+      if pivot >= @list[low] # we are at the first section of the array
+        if @target < pivot && @target >= @list[low] # starting binary search in first section
+          high  = middle - 1
+        else
+          low = middle + 1
+        end
+      else # we are at the second section 
+        if @target <= @list[high] && @target > section_division
+          low = middle + 1
+        else
+          high  = middle - 1
+        end
+      end
+    end
+
+    return -1 # target number not found
+  end 
+end
+
+subject = BinarySearch.new(3)
