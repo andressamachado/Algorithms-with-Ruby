@@ -1,3 +1,5 @@
+# Finds target number in a rotated sorted array using Binary Search
+
 class BinarySearch
   def initialize(target)
     @list = [5, 6, 7, 8, 1, 2, 3, 4]
