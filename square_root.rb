@@ -1,3 +1,5 @@
+# Calculates sqrt of a number using Binary Search
+
 class SquareRoot
   def initialize(num)
     @number = num
