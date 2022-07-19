@@ -1,5 +1,4 @@
 class BinarySearchV2
-
   def initialize(item)
     @list = Array.new(11) {|i| i} 
     @high = @list.length #highest number to check represented by the index
