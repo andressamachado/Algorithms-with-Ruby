@@ -1,3 +1,4 @@
+# Finds a peak element in an array using Binary Search
 # Input: nums = [1,2,1,3,5,6,4]
 # Output: should return index number 1 where the peak element is 2, or index number 5 where the peak element is 6.
 
